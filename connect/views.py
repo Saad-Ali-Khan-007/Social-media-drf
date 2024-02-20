@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from . import models
-from .serializers import UserSerializer
+from .serializers import UserSerializer,PostSerializer
 from rest_framework import generics
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -8,6 +8,11 @@ from django.http import JsonResponse
 
 
 class UserList(generics.ListCreateAPIView):
+    queryset = models.User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.User.objects.all()
     serializer_class = UserSerializer
 
@@ -24,3 +29,8 @@ def user_login(request):
         return JsonResponse({"bool":True,"user_id":user.id})
     else:
         return JsonResponse({"bool":False})
+    
+
+class PostList(generics.ListCreateAPIView):
+    queryset = models.Post.objects.all()
+    serializer_class = PostSerializer
