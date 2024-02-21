@@ -26,11 +26,11 @@ def user_login(request):
     except models.User.DoesNotExist:
         user =None
     if user:
-        return JsonResponse({"bool":True,"user_id":user.id})
+        return JsonResponse({"bool":True,"user_id":user.id,"user_name":user.name})
     else:
         return JsonResponse({"bool":False})
     
 
 class PostList(generics.ListCreateAPIView):
-    queryset = models.Post.objects.all()
+    queryset = models.Post.objects.all().order_by("-created")
     serializer_class = PostSerializer

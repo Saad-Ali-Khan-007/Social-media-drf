@@ -13,8 +13,10 @@ class User(models.Model):
 
 class Post(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    caption = models.CharField(null=True,max_length=400)
+    username = models.CharField(max_length=50,null=True)
+    caption = models.CharField(null=True,max_length=100000)
     add_photos = models.ImageField(upload_to="post_imgs/",null=True)
     add_location = models.CharField(null=True,max_length=50)
     add_tags = models.CharField(null=True,max_length=50)
+    created = models.DateTimeField(auto_now_add=True,null=True)
 
