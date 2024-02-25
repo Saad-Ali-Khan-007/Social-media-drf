@@ -4,5 +4,6 @@ urlpatterns = [
     path("user/",views.UserList.as_view()),
     path("user/<int:pk>",views.UserDetail.as_view()),
     path("post/",views.PostList.as_view()),
+    path("post/<int:pk>",views.PostDetail.as_view()),
     path("user/login/",views.user_login)
 ]

@@ -34,3 +34,9 @@ def user_login(request):
 class PostList(generics.ListCreateAPIView):
     queryset = models.Post.objects.all().order_by("-created")
     serializer_class = PostSerializer
+
+class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Post.objects.all()
+    serializer_class = PostSerializer
+
+    
