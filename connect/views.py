@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from . import models
-from .serializers import UserSerializer,PostSerializer
+from .serializers import UserSerializer,PostSerializer,UserPostSerializer
 from rest_framework import generics
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -35,6 +35,14 @@ class PostList(generics.ListCreateAPIView):
     queryset = models.Post.objects.all().order_by("-created")
     serializer_class = PostSerializer
 
+class UserPostList(generics.ListCreateAPIView):
+    queryset = models.Post.objects.all().order_by("-created")
+    serializer_class = UserPostSerializer
+
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = models.Post.objects.all()
     serializer_class = PostSerializer
+
+class UserPostDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Post.objects.all()
+    serializer_class = UserPostSerializer
